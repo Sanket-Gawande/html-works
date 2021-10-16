@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="" content="">
+    <title></title>
+</head>
+<body>
+    <div class="container">
+        <div class="form-div">
+            <div class="main">
+                <img id="logo" src="logo.png" alt="" />
+                <h2 class="thin">For free 3D illustration and web design stuffs. Create a free account here </h2>
+             
+            </div>
+
+            <form class="form" action="http://localhost:3100/react" method="post" accept-charset="utf-8">
+                <p class="language-link">
+                    English (UK)
+                </p>
+                <h2 class="heading">Create account</h2>
+                <div class="api">
+                    <div class="api-link">
+                        <img src="google.png" alt="" />
+
+                        <p>
+                            Sign up with Google
+                        </p>
+                    </div>
+                    <div class="api-link">
+                        <img src="facebook.png" alt="" />
+                        <p>
+                            Sign up with Facebook
+                        </p>
+                    </div>
+                </div>
+                <p class="or">
+                    -OR-
+                </p>
+                <div class="sign-up-form">
+                       <img class="3d-stuffs" id="decoration" src="3d.png" alt="" />
+                    <input type="text" name="name" id="" value="" placeholder="Full name" />
+                    <input type="email" name="email" id="" value="" placeholder="Email" />
+                    <input type="password" name="password" id="" value="" placeholder="Password" />
+                    <button type="submit">Create account</button>
+                    <p>
+                        Already have an account <a class="link" href="#">Login here</a>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+     
+ 
+    <style type="text/css" media="all">
+        *{
+            margin:0;
+            padding:0;
+            box-sizing: border-box;
+            text-decoration: none;
+            outline:none;
+            border:none;
+            font-family: Verdana;
+        }
+        .container{
+            height:100vh;
+            width:100vw;
+            background: #a3d0d3;
+            
+        }
+        .form-div {
+            width:90%;
+            height:500px;
+            max-width: 800px;
+            margin: auto;
+            top:50px;
+            box-shadow: 10px 10px 15px rgba(0,0,0,.2);
+            position: relative;
+            border-radius: 20px;
+        }
+        .form-div .main{
+            width:100%;
+            
+            height:100%;
+            background:rgba(163,208,211,1);
+            border-radius: 20px;
+            position: relative;
+            color:#999;
+            border:2px solid #fff;
+            padding:20px;
+            overflow: hidden;
+        }
+        .main h2{
+            width:30%;
+            padding:10px;
+            color:#fff;
+            font-weight: 400;
+            font-size:1em;
+        }
+        .form-div .form{
+            display:block;
+            position: absolute;
+            right:0;
+            height:100%;
+            width:70%;
+            background:#fff;
+            border-radius: 20px;
+            top:0;
+            padding:20px 0;
+          
+        }
+        .form .heading {
+            margin:30px 100px 10px;
+        }
+        .form .api{
+            width:80%;
+            margin:20px auto;
+            display:flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .8em;
+        }
+        .form .api-link{
+            margin:0 10px;
+            padding:5px 15px;
+            border:1px solid #999;
+            border-radius: 5px;
+            display:flex;
+            align-items: center;
+        }
+        .api-link img{
+            width:30px;
+            height:30px;
+            border-radius: 50%;
+            margin-right:10px;
+        }
+        .form p{
+            color:#999;
+        }
+        .form .or{
+            text-align: center;
+            margin:20px 0;
+        }
+        .language-link{
+            position: absolute;
+            right:20px;
+            top:20px;
+            font-size:.8em;
+        }
+        .sign-up-form{
+            width:60%;
+            margin:0 auto;
+          position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+        input{
+            width:80%;
+            margin:10px auto;
+            padding:10px 0;
+            border-bottom:1px solid #eee;
+            z-index: 2;
+            background:none;
+            color:#999;
+        }
+        button{
+            border:none;
+            padding:10px;
+            margin:10px auto;
+            width:80%;
+            background:#a3d0d3;
+            border-radius: 10px;
+            color:#fff;
+        }
+        .sign-up-form p{
+            width:80%;
+            margin:10px auto;
+            font-size: .8em;
+        }
+        .sign-up-form p a{
+            color:#a3d0d3;
+        }
+        
+        #decoration{
+           width:110%;
+           top:10%;
+           position: absolute;
+           left:-90%;
+        
+        }
+        #logo{
+            width:30px;
+            height:30px;
+            margin-left:10px;
+            filter: invert(1);
+        }
+        @media (max-width:768px){
+            .form-div .form{
+                width:100%;
+                left:0;
+                right:0;
+            }
+            #decoration{
+               display: none;
+            }
+            
+            .sign-up-form{
+                width:90%;
+            }
+          .form-div  .api{
+                width:90%;
+             
+           
+            }
+        }
+    </style>
+
+</body>
+</html>

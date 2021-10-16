@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width = device-width  , initial-scale = 1.0">
+    <link rel="stylesheet" href="style.css" type="text/css" media="all" />
+    <title>Local storage</title>
+</head>
+
+<body>
+    <h4 class="h4">This is simple HTML ,CSS &amp; JS project .It's storing some form data in localStorage and also fetching
+        them in form of simple html lists.</h4>
+    <div class="form-div">
+        
+        <h3>Application form</h3>
+        <form>
+            <h4>Name</h4>
+            <input type="text" placeholder="" class="name" required>
+            <h4>Programming Language</h4>
+            <input type="text" class="language" required>
+            <h4>Height Education</h4>
+            <input type="text" class="education" required>
+            <h4>Date of birth</h4>
+            <small style="color:red">Tap to select date</small>
+            <input type="date" class="birh-date" required>
+            <button action="submit">Submit</button>
+        </form>
+    </div>
+    <div class="data-sheet">
+
+    </div>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+        * {
+            font-family: 'poppins', Sans-Serif;
+        }
+        .h4{
+            padding: 20px;
+            margin: 10px auto;
+            text-align: center;
+            color:#008b8b;
+        }
+        .form-div {
+            width: 90%;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid darkcyan;
+            max-width: 500px;
+        }
+
+        .form-div h3 {
+            margin: 30px 0;
+            text-align: center;
+            font-size: 22px;
+            color: darkcyan;
+        }
+
+        form {
+            width: 100%;
+            margin: 0;
+
+        }
+
+
+        form input {
+            width: 90%;
+            margin: 20px auto;
+            padding: 8px 20px;
+            border: 1px solid darkcyan;
+            border-radius: 5px;
+            display: block;
+        }
+
+        form button {
+            background: darkcyan;
+            color: #fff;
+            padding: 8px 15px;
+            margin: 20px;
+            border: none;
+            border-radius: 5px
+        }
+
+        .data-sheet {
+            width: 90%;
+            margin: 20px auto;
+
+
+        }
+
+        .data-sheet ul {
+
+            width: 100%;
+            list-style: none;
+            color: darkcyan;
+            margin: 10px auto;
+            border: 1px solid darkcyan;
+            padding: 10px;
+            max-width: 500px;
+        }
+
+        ul li {
+            margin: 0 auto;
+            border: 1px solid #ddd;
+            padding: 5px 10px;
+            font-weight: bold;
+        }
+    </style>
+    <script>
+
+        storedData = localStorage.getItem("applications");
+        if (storedData === 'null') {
+            console.log("Empty database");
+
+            myDataArray = [];
+            dataObj = JSON.stringify(myDataArray);
+            localStorage.setItem("applications", dataObj);
+        } else {
+
+            var storedData = localStorage.getItem("applications");
+            const dataList = JSON.parse(storedData);
+
+            var html = "";
+            for (const item of dataList) {
+                html += '<ul><li>Name : ' + item.name + '</li><li>Programs in : ' + item.lang + '</li><li>Qualification : ' + item.edu + '</li><li>D-O-B : ' + item.dob + '</li></ul>';
+            }
+            const datadiv = document.querySelector(".data-sheet")
+            datadiv.innerHTML = html;
+
+
+        }
+
+
+
+        const form = document.querySelector('form')
+
+        form.onsubmit = e => {
+            e.preventDefault();
+            const name = document.querySelector('.name')
+            const Language = document.querySelector('.language')
+            const Education = document.querySelector('.education')
+            const DOB = document.querySelector('.birh-date')
+
+
+            const obj = {};
+            obj.name = name.value
+            obj.lang = Language.value
+            obj.edu = Education.value
+            obj.dob = DOB.value
+
+            const data = JSON.parse(storedData);
+            data.push(obj);
+            store = JSON.stringify(data)
+            localStorage.setItem("applications", store);
+            console.log(store)
+            form.reset()
+        }
+
+    </script>
+</body>
+
+</html>

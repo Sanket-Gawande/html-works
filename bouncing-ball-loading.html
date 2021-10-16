@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="" content="">
+    <title></title>
+</head>
+<body>
+    <button class="loading" type="submit">
+        <span class="first"></span>
+        <span class="second"></span>
+        <span class="third"></span>
+    </button>
+    <style type="text/css" media="all">
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+            background: #fff;
+            display: grid;
+            place-items: center;
+        }
+        .loading {
+            width: 150px;
+            padding: 0;
+            text-align: center;
+        background:none;
+        border: none;
+        display: flex;
+        justify-content: center;
+        border-bottom: 2px solid #eee;
+        }
+        .loading span {
+            width:20px;
+            background:linear-gradient(-45deg , darkcyan ,cyan,#fff);
+            border-radius: 50%;
+            margin:0 5px;
+            height:20px;
+        
+            display:block;
+           transition:.3s;
+            animation: pulse 1s linear infinite;
+        }
+        .loading span.first{
+         animation-delay: 0s;
+      
+        }
+        .loading span.second{
+       
+         animation-delay: .2s;
+     
+        }
+        .loading span.third{
+          animation-delay: .4s;
+    
+        }
+        
+        @keyframes pulse{
+            0%{
+           
+                transform: translatey(0);
+            }
+           50%{
+          
+                transform: translatey(-50px);
+            }
+           100%{
+          
+                transform: translatey(0);
+            }
+        }
+    </style>
+</body>
+</html>

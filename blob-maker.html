@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width = device-width , initial-scale = 1">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Blob maker</title>
+</head>
+<body>
+    <div class="container">
+        <div class="preview-box">
+            <div class="blob-preview">
+
+            </div>
+        </div>
+        <div class="adjustment-sliders">
+            <Input oninput="sliderInput()" type="range" name="" id="border-top-left" value="40" min="0" max="100" />
+            <Input oninput="sliderInput()" type="range" name="" id="border-top-right" value="10" min="0" max="100" />
+            <Input oninput="sliderInput()" type="range" name="" id="border-bottom-right" value="80" min="0" max="100" />
+            <Input oninput="sliderInput()" type="range" name="" id="border-bottom-left" value="30" min="0" max="100" />
+        </div>
+        <input readonly type="text" name="" id="border-radius-preview" value="border-radius : 67% 50% 80% 55% / 50% 75% 56% 20%" />
+        <button onclick="random()" id="copy-button" type="submit">Generate random <i class="fa"></i></button>
+        <button onclick="copyText()" id="copy-button" type="submit">Copy settings</button>
+    </div>
+    <style type="text/css" media="all">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            outline: none;
+            font-family: Comic Sans MS;
+        }
+        body {
+            background: tomato;
+            background: #fff;
+            height: 100vh;
+            display: grid;
+            place-items: center;
+        }
+        .container {
+            width: 350px;
+            height: auto;
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 0 25px rgba(0,0,0,.2);
+            padding: 10px;
+        }
+        .container .preview-box {
+            width: 300px;
+            height: 300px;
+            border-radius: 15px;
+            background: #f1f1f2;
+            margin: 15px auto;
+            display: grid;
+            place-items: center;
+        }
+        .container .blob-preview {
+            width: 70%;
+            height: 70%;
+          background:tomato;
+          background:linear-gradient(red, #ff5200 );
+            border-radius:67% 50% 80% 55% / 50% 75% 56% 20% ;
+            box-shadow: 0 0 25px rgba(0,0, 0  ,.3);
+            transition:all .1s ;
+  }
+        .adjustment-sliders {
+            width: 300px;
+            margin: 10px auto;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .adjustment-sliders input {
+
+            width: 45%;
+            margin: 15px 0;
+            -webkit-appearance: none;
+            height: 5px;
+            border-radius: 10px;
+            background: #ddd;
+            position: relative;
+            z-index: 2;
+
+        }
+        input[type=range]{
+            cursor: pointer;
+        }
+        .adjustment-sliders input:after
+        {
+            position: absolute;
+            content: "";
+            top: 50%;
+            height: 15px;
+            width: 15px;
+            border-radius: 50%;
+            transform: translate(-50% , -50%);
+            background: tomato;
+            z-index: -1;
+        }
+        .adjustment-sliders input:before {
+            position: absolute;
+            content: "";
+            top: 50%;
+            height: 7px;
+
+            border-radius: 10px;
+            transform: translatey(-50%);
+            background: tomato;
+        }
+        .adjustment-sliders input::-webkit-slider-thumb {
+            opacity: 0;
+        }
+        #border-top-left:after {
+            left: var(--s1 ,40%);
+        }
+        #border-top-left:before {
+            width: var(--w1 ,40%);
+        }
+        #border-top-right:after {
+            left: var(--s2 ,60%);
+        }
+        #border-top-right:before {
+            width: var(--w2 ,60%);
+        }
+        #border-bottom-left:after {
+            left: var(--s3,10%);
+        }
+        #border-bottom-left:before {
+            width: var(--w3,10%);
+        }
+        #border-bottom-right:after {
+            left: var(--s4 ,30%);
+        }
+        #border-bottom-right:before {
+            width: var(--w4 ,30%);
+        }
+
+
+        #border-radius-preview {
+            width: 300px;
+            border-radius: 5px;
+            background: #f1f1f2;
+            margin: 10px auto;
+            display: block;
+            padding: 10px;
+            border: none;
+            color: #555;
+        }
+        #copy-button {
+            width: 300px;
+            display: block;
+            padding: 10px 0;
+            text-align: center;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255 , 50 , 50 , .9);
+            margin: 15px auto;
+            color: #fff;
+            text-transform: uppercase;
+            font-size: .8rem;
+            box-shadow: 0 2px 10px rgba(255 , 50 , 10 , .5);
+transition: .1s;
+        }
+        #copy-button:active{
+            box-shadow: none;
+            transform: translatey(2px);
+        }
+        #copy-button{
+            cursor:pointer;
+        }
+    </style>
+    <script type="text/javascript" charset="utf-8">
+        s1 = document.querySelector("#border-top-left")
+        s2 = document.querySelector("#border-top-right")
+        s3 = document.querySelector("#border-bottom-left")
+        s4 = document.querySelector("#border-bottom-right")
+
+        blob = document.querySelector(".blob-preview")
+        
+        input = document.querySelector("#border-radius-preview")
+
+
+
+        function sliderInput() {
+            s1.style.setProperty('--s1', s1.value+"%");
+            s1.style.setProperty('--w1', s1.value+"%");
+            s2.style.setProperty('--s2', s2.value+"%");
+            s2.style.setProperty('--w2', s2.value+"%");
+            s3.style.setProperty('--s3', s3.value+"%");
+            s3.style.setProperty('--w3', s3.value+"%");
+            s4.style.setProperty('--s4', s4.value+"%");
+            s4.style.setProperty('--w4', s4.value+"%");
+
+let br = s1.value+"% "+(100- s1.value)+"% "+ s3.value+"% "+ (100 - s3.value)+"% /"+s2.value+"%" + (100 - s2.value)+"%"+s4.value+"%" + (100 - s4.value)+"%";
+
+
+            blob.style.borderRadius = br;
+            
+            input.value = "border-radius : "+ br ;
+            
+            
+        }
+        
+       function  copyText(){
+            
+        input.select()
+        input.setSelectionRange(0, 99999);
+        alert("Copied to clipboard || " + input.value)
+        document.execCommand("copy");
+        }
+      
+      
+      function random(){
+          s1v = Math.floor(Math.random()* 101 )
+          s2v= Math.floor(Math.random()* 101 )
+          s3v = Math.floor(Math.random()* 101 )
+          s4v = Math.floor(Math.random()* 101 )
+          
+          let rbr = s1v+"% "+ (100 - s1v )+"% "+ s2v+"% "+ (100 - s2v)+"% / "+s3v+"% "+ (100 - s3v )+"% "+ s4v+"% "+ (100 - s4v)+"%";
+          blob.style.borderRadius = rbr;
+          
+          input.value = "border-radius : "+ rbr;
+          
+          
+          s1.style.setProperty('--s1', s1v+"%");
+            s1.style.setProperty('--w1', s1v+"%");
+            s2.style.setProperty('--s2', s2v+"%");
+            s2.style.setProperty('--w2', s2v+"%");
+            s3.style.setProperty('--s3', s3v+"%");
+            s3.style.setProperty('--w3', s3v+"%");
+            s4.style.setProperty('--s4', s4v+"%");
+            s4.style.setProperty('--w4', s4v+"%");
+      }
+        </script>
+</body>
+</html>
